@@ -1,7 +1,3 @@
-#!/bin/bash
-
-cat <<EOL > Project_Documentation.md
-
 # Project Documentation
 
 ## **Setup Instructions**

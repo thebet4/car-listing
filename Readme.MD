@@ -1,33 +1,35 @@
-#!/bin/bash
-
-cat <<EOL > Project_Documentation.md
-
 # Project Documentation
 
 ## **Setup Instructions**
 
+### **Clone the Repository**
+```bash
+git clone https://github.com/thebet4/car-listing-challenge.git
+cd car-listing-challenge
+```
+
 ### **Backend**
 
 1. Navigate to the backend directory:
-   \`\`\`bash
+   ```bash
    cd backend
-   \`\`\`
+   ```
 2. Start the development server:
-   \`\`\`bash
+   ```bash
    yarn dev
-   \`\`\`
+   ```
 3. The server will be running at [http://localhost:3000](http://localhost:3000).
 
 ### **Frontend**
 
 1. Navigate to the frontend directory:
-   \`\`\`bash
+   ```bash
    cd frontend
-   \`\`\`
+   ```
 2. Start the frontend development server:
-   \`\`\`bash
+   ```bash
    yarn dev
-   \`\`\`
+   ```
 3. The app will be running at [http://localhost:3001](http://localhost:3001).
 
 ---

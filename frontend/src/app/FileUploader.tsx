@@ -16,11 +16,18 @@ export function FileUploader() {
       selectedFile.type ===
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     ) {
+      const maxFileSize = 10 * 1024 * 1024; // 10MB in bytes
+      if (maxFileSize < selectedFile.size) {
+        toast.error("Please upload a file less than 10mb");
+        event.target.value = "";
+        return;
+      }
+
       setFile(selectedFile);
       setInvalidEntrancesFile("");
     } else {
       toast.error("Please upload a valid .xlsx file");
-      event.target.value = ""; // Reset input
+      event.target.value = "";
     }
   };
 
@@ -94,15 +101,30 @@ export function FileUploader() {
           required
           type="file"
           accept=".xlsx"
+          disabled={isPending}
           onChange={handleFileChange}
-          className="bg-neutral-900 py-4 px-6 rounded-lg"
+          className={`
+            bg-neutral-900 
+            py-4 px-6
+            rounded-lg 
+          disabled:text-neutral-300
+            ${isPending ? "cursor-wait" : "cursor-pointer"}`}
         />
 
         <div className="flex gap-4">
           <button
             disabled={!file}
             type="submit"
-            className="bg-foreground text-background px-6 py-2 rounded-lg cursor-pointer"
+            className={`
+                bg-foreground 
+                text-background 
+                px-6 py-2 
+                rounded-lg 
+                
+                disabled:bg-neutral-400
+                disabled:cursor-not-allowed
+                ${isPending ? "cursor-wait" : "cursor-pointer"}
+              `}
           >
             {isPending ? <p>Processing…</p> : <p>Upload</p>}
           </button>

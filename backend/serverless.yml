@@ -1,0 +1,30 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: vbtech
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: backend
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  upload:
+    handler: ./src/api/modules/car/upload/handler.handler
+    events:
+      - http:
+          path: /car/upload
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
+  - serverless-offline-watcher
+
+custom:
+  serverless-offline-watcher:
+    - path:
+        - src/**/**
+      command: echo "src folder was modified!"
+      hook:
+        - offline:functionsUpdated
